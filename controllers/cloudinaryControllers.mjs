@@ -8,9 +8,9 @@ dotenv.config();
 const router = express.Router()
 
 cloudinary.config({
-  cloud_name: "dcnpu9qlr",
-  api_key: "671138926981391",
-  api_secret: "xYDw8K4vmB8JgWuoQ59X0Bgyjn0"
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 const storage = multer.memoryStorage();
