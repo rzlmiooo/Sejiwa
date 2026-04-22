@@ -1,14 +1,16 @@
 //importing modules
-import {Sequelize, DataTypes} from 'sequelize';
-import userModel from '../models/userModel.mjs'; 
+import { Sequelize, DataTypes } from 'sequelize';
+import userModel from '../models/userModel.mjs';
 import dotenv from 'dotenv';
 import pg from 'pg';
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 dotenv.config();
 
 const Pool = pg.Pool
 
-dotenv.config(); 
+dotenv.config();
 
 const DATABASE_URL = process.env.DATABASE_URL
 
@@ -25,15 +27,15 @@ const sequelize = new Sequelize(DATABASE_URL, {
   },
 });
 
-    sequelize.authenticate().then(() => {
-        console.log(`Database connected`)
-    }).catch((err) => {
-        console.log(err)
-    })
+sequelize.authenticate().then(() => {
+  console.log(`Database connected`)
+}).catch((err) => {
+  console.log(err)
+})
 
-    const db = {}
-    db.Sequelize = Sequelize
-    db.sequelize = sequelize
+const db = {}
+db.Sequelize = Sequelize
+db.sequelize = sequelize
 
 db.users = userModel(sequelize, DataTypes)
 
