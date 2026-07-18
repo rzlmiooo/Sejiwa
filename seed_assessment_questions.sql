@@ -1,0 +1,16 @@
+INSERT INTO assessment_questions (code, question_text) VALUES
+('Q01', 'Kurang berminat atau bergairah dalam melakukan apapun'),
+('Q02', 'Merasa murung, sedih, atau putus asa'),
+('Q03', 'Sulit tidur, bangun tengah malam, atau tidur terlalu banyak'),
+('Q04', 'Merasa lelah atau kurang bertenaga'),
+('Q05', 'Kurang nafsu makan atau makan terlalu banyak'),
+('Q06', 'Merasa buruk tentang diri sendiri, merasa gagal, atau mengecewakan keluarga'),
+('Q07', 'Sulit berkonsentrasi pada sesuatu, seperti membaca koran atau menonton televisi'),
+('Q08', 'Bergerak atau berbicara sangat lambat sehingga orang lain memperhatikannya, atau sangat gelisah sehingga tidak bisa diam'),
+('Q09', 'Merasa gugup, cemas, atau tegang'),
+('Q10', 'Tidak mampu menghentikan atau mengendalikan kekhawatiran'),
+('Q11', 'Terlalu mengkhawatirkan berbagai hal'),
+('Q12', 'Sulit bersantai'),
+('Q13', 'Sangat gelisah sehingga sulit duduk diam'),
+('Q14', 'Mudah kesal atau marah'),
+('Q15', 'Merasa takut seolah-olah sesuatu yang buruk akan terjadi');

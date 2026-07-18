@@ -1,0 +1,456 @@
+{
+  "info": {
+    "name": "Sejiwa API",
+    "description": "API Postman Collection for Sejiwa Project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"pelajar\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {
+              "raw": "{{base_url}}/signup",
+              "host": ["{{base_url}}"],
+              "path": ["signup"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {
+              "raw": "{{base_url}}/login",
+              "host": ["{{base_url}}"],
+              "path": ["login"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"YOUR_REFRESH_TOKEN\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {
+              "raw": "{{base_url}}/refresh",
+              "host": ["{{base_url}}"],
+              "path": ["refresh"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/users", "host": ["{{base_url}}"], "path": ["users"]}
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/users/1", "host": ["{{base_url}}"], "path": ["users", "1"]}
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New User\",\n  \"email\": \"new@example.com\",\n  \"password\": \"pass123\",\n  \"role\": \"konselor\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/users", "host": ["{{base_url}}"], "path": ["users"]}
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Name\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/users/1", "host": ["{{base_url}}"], "path": ["users", "1"]}
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "DELETE",
+            "url": {"raw": "{{base_url}}/users/1", "host": ["{{base_url}}"], "path": ["users", "1"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Assessment",
+      "item": [
+        {
+          "name": "Submit Assessment",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"answers\": [1, 2, 3, 4, 5]\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/assessment/submit", "host": ["{{base_url}}"], "path": ["assessment", "submit"]}
+          }
+        },
+        {
+          "name": "Save Answer",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"questionId\": \"q1\",\n  \"answer\": 5\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/assessment/answer", "host": ["{{base_url}}"], "path": ["assessment", "answer"]}
+          }
+        },
+        {
+          "name": "Get Assessment Answer",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/assessment/answer", "host": ["{{base_url}}"], "path": ["assessment", "answer"]}
+          }
+        },
+        {
+          "name": "Get Assessment Questions",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/assessment/questions", "host": ["{{base_url}}"], "path": ["assessment", "questions"]}
+          }
+        },
+        {
+          "name": "Create Session",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "url": {"raw": "{{base_url}}/assessment/sessions", "host": ["{{base_url}}"], "path": ["assessment", "sessions"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recommendations",
+      "item": [
+        {
+          "name": "Get Recommendations (POST)",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"answers\": [3, 4, 2, 5]\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/recommendations", "host": ["{{base_url}}"], "path": ["recommendations"]}
+          }
+        },
+        {
+          "name": "Get Recommendations (GET)",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/recommendations?answers=[3,4,2,5]",
+              "host": ["{{base_url}}"],
+              "path": ["recommendations"],
+              "query": [
+                {"key": "answers", "value": "[3,4,2,5]"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Total Users",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/analytics/totalUsers", "host": ["{{base_url}}"], "path": ["analytics", "totalUsers"]}
+          }
+        },
+        {
+          "name": "Total Schedules",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/analytics/totalSchedules", "host": ["{{base_url}}"], "path": ["analytics", "totalSchedules"]}
+          }
+        },
+        {
+          "name": "Total Assessments",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/analytics/totalAssessments", "host": ["{{base_url}}"], "path": ["analytics", "totalAssessments"]}
+          }
+        },
+        {
+          "name": "Schedule Charts",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/analytics/scheduleCharts", "host": ["{{base_url}}"], "path": ["analytics", "scheduleCharts"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Get All Bookings",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/bookings", "host": ["{{base_url}}"], "path": ["bookings"]}
+          }
+        },
+        {
+          "name": "Get Booking by ID",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/bookings/1", "host": ["{{base_url}}"], "path": ["bookings", "1"]}
+          }
+        },
+        {
+          "name": "Create Booking",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scheduleId\": \"123\",\n  \"notes\": \"I need help with stress management.\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/bookings", "host": ["{{base_url}}"], "path": ["bookings"]}
+          }
+        },
+        {
+          "name": "Update Booking",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"confirmed\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/bookings/1", "host": ["{{base_url}}"], "path": ["bookings", "1"]}
+          }
+        },
+        {
+          "name": "Delete Booking",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "DELETE",
+            "url": {"raw": "{{base_url}}/bookings/1", "host": ["{{base_url}}"], "path": ["bookings", "1"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chats",
+      "item": [
+        {
+          "name": "Create Chat Room",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"participantId\": \"user123\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/chats/rooms", "host": ["{{base_url}}"], "path": ["chats", "rooms"]}
+          }
+        },
+        {
+          "name": "Get Rooms",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/chats/rooms", "host": ["{{base_url}}"], "path": ["chats", "rooms"]}
+          }
+        },
+        {
+          "name": "Get Room by ID",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/chats/rooms/1", "host": ["{{base_url}}"], "path": ["chats", "rooms", "1"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultations",
+      "item": [
+        {
+          "name": "Get All Consultations",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/consultations", "host": ["{{base_url}}"], "path": ["consultations"]}
+          }
+        },
+        {
+          "name": "Get Consultation by ID",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/consultations/1", "host": ["{{base_url}}"], "path": ["consultations", "1"]}
+          }
+        },
+        {
+          "name": "Create Consultation",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookingId\": \"b123\",\n  \"summary\": \"The consultation went well.\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/consultations", "host": ["{{base_url}}"], "path": ["consultations"]}
+          }
+        },
+        {
+          "name": "Update Consultation",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"summary\": \"Updated notes.\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/consultations/1", "host": ["{{base_url}}"], "path": ["consultations", "1"]}
+          }
+        },
+        {
+          "name": "Delete Consultation",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "DELETE",
+            "url": {"raw": "{{base_url}}/consultations/1", "host": ["{{base_url}}"], "path": ["consultations", "1"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schedules",
+      "item": [
+        {
+          "name": "Get All Schedules",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/schedules", "host": ["{{base_url}}"], "path": ["schedules"]}
+          }
+        },
+        {
+          "name": "Get Schedule by ID",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/schedules/1", "host": ["{{base_url}}"], "path": ["schedules", "1"]}
+          }
+        },
+        {
+          "name": "Create Schedule",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-06-25\",\n  \"time\": \"10:00\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/schedules", "host": ["{{base_url}}"], "path": ["schedules"]}
+          }
+        },
+        {
+          "name": "Update Schedule",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-06-26\"\n}",
+              "options": {"raw": {"language": "json"}}
+            },
+            "url": {"raw": "{{base_url}}/schedules/1", "host": ["{{base_url}}"], "path": ["schedules", "1"]}
+          }
+        },
+        {
+          "name": "Delete Schedule",
+          "request": {
+            "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}", "type": "string"}]},
+            "method": "DELETE",
+            "url": {"raw": "{{base_url}}/schedules/1", "host": ["{{base_url}}"], "path": ["schedules", "1"]}
+          }
+        }
+      ]
+    }
+  ]
+}
